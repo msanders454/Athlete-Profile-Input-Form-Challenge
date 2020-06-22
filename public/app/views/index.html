@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/style.css">
+
+    <title>Athlete Profile Form</title>
+</head>
+
+<body>
+
+    <div ng-controller="page-setter">
+        <div id="form" class="form-container" ng-controller="Switch as switch">
+
+            <!-- 1st page- Basic Information -->
+            <div id="formOne" ng-show=switch.checkFormOne()>
+
+                <!-- Progess Bar -->
+                <div class="progress" style="margin-bottom: 2em;">
+                    <div class="progress-yes">Basic</div>
+                    <div class="progress-not">Team</div>
+                    <div class="progress-not">Interest</div>
+                    <div class="progress-not">Summary</div>
+                </div>
+
+                <!--Title -->
+                <h3 style="text-align: center;">Basic Info</h3>
+                <hr>
+                <!-- Form Inputs-->
+                <div class="form">
+                    <label for="firstName">First Name</label>
+                    <input type="text" ng-model="firstName" class="form-control" id="name" placeholder="Enter first name" />
+                </div>
+
+                <div class="form">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" ng-model="lastName" class="form-control" id="name" placeholder="Enter last name" />
+                </div>
+
+                <label for="DOB">Date of Birth:</label>
+                <div class="form form-inline">
+                    <div class="input">
+                        <input ng-model="dobd" type="text" maxlength="2" aria-label="month" placeholder="Month" class="form-control">
+                        <input ng-model="dobm" type="text" maxlength="2" aria-label="day" placeholder="Day" class="form-control">
+                        <input ng-model="doby" type="text" maxlength="4" aria-label="year" placeholder="Year" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <div class="input">
+                        <select ng-model="gender" class="custom-select" id="gender-select">
+                            <option data-text="male">Male</option>
+                            <option data-text="female">Female</option>
+                            <option data-text="other">Both</option>
+                            <option data-text="other">None</option>
+                            <option data-text="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <label for="nationality">Nationality</label>
+                        <div class="input">
+                            <select ng-options="nationality for nationality in Nationalities track by $index" ng-model="nationality" class="custom-select" id="nat-select">
+
+                            </select>
+                        </div>
+                </div>
+
+                
+                <button type="button" class="button" ng-click="switch.formTwo()">
+                    Continue </button>
+                 <!--Next Button -->
+
+
+            </div>
+
+            <!--Sports Info -->
+            <div id="formTwo" ng-show=switch.checkFormTwo()>
+              <!-- Progess Bar -->
+                <div class="progress" style="margin-bottom: 2em;">
+                    <div class="progress-not">Basic</div>
+                    <div class="progress-yes">Team</div>
+                    <div class="progress-not">Interest</div>
+                    <div class="progress-not">Summary</div>
+                </div>
+
+                <h3 style="text-align: center;">Sport Info</h3>
+                <hr>
+
+                <div class="form">
+                    <label class="label-default" for="sports">Player Sport:</label>
+                    <div class="input-group-sm">
+                        <select ng-options="sport for sport in Sports track by $index" ng-model="sports" class="custom-select" id="sport-select">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="Association">
+                    <label for="team">Association:</label>
+                    <input type="text" ng-model="association" class="form-control" id="association" placeholder="Enter association name" />
+                </div>
+
+                <div class="form">
+                    <label for="team">Team:</label>
+                    <input type="text" ng-model="team" class="form-control" id="team" placeholder="Enter Team name" />
+                </div>
+
+
+                <div class="btn-group-container">
+                    <div class="btn-group" style="width: 100%;"role="group">
+                          <button type="button" class="button" ng-click="switch.formOne()">
+                        Previous </button>
+                        <button type="button" class="button " ng-click="switch.formThree()">
+                        Continue </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Personality -->
+
+            <div id="formThree" ng-show=switch.checkFormThree()>
+                 <!-- Progess Bar -->
+                 <div class="progress" style="margin-bottom: 2em;">
+                    <div class="progress-not">Basic</div>
+                    <div class="progress-not">Team</div>
+                    <div class="progress-yes">Interest</div>
+                    <div class="progress-not">Summary</div>
+                </div>
+
+                 <!--Title-->
+                <h3 style="text-align: center;">Personality</h3>
+                <hr>
+                    <div class="form">
+                        <label for="player-description">Description:</label>
+                        <div class="input">
+                            <textarea ng-model="about" class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <label for="player-interest">Interests:</label>
+                        <div class="input">
+                            <textarea ng-model="interests" class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="btn-group-container">
+                    <div class="btn-group" style="width: 100%;"role="group">
+                        <button type="button" class="button" ng-click="switch.formTwo()">
+                        Previous </button>
+                        <button type="button" class="button " ng-click="switch.formFour()">
+                        Continue </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Summary-->
+            <div id="formFour" ng-show=switch.checkFormFour()>
+                <div class="summary">
+                    <!--Page Setter -->
+                    <div class="progress" style="margin-bottom: 2em;">
+                        <div class="progress-not">Basic</div>
+                        <div class="progress-not">Team</div>
+                        <div class="progress-not">Interest</div>
+                        <div class="progress-yes">Summary</div>
+                    </div>
+                    <h3 style="text-align: center;">Summary</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-7">
+                            <h6>Basic Info:</h6>
+                        </div>
+
+                        <div class="col-5" style="text-align: right">
+                            <button class="button-edit" ng-click="switch.formOne()">Edit</button>
+                        </div>
+                    </div>
+
+                    <li>First Name: {{firstName}}</li>
+                    <li>Last Name: {{lastName}}</li>
+                    <li>Date of Birth: {{dobd}}-{{dobm}}-{{doby}}</li>
+                    <li>Gender: {{gender}}</li>
+                    <li>Nationality: {{nationality}}</li>
+
+                    <br></br>
+
+                    <div class=" row">
+                        <div class="col-7">
+                            <h6>About:</h6>
+                        </div>
+
+                        <div class="col-5" style="text-align: right">
+                            <button class="button-edit" ng-click="switch.formTwo()">Edit</button>
+                        </div>
+                    </div>
+
+                    <li>Sport: {{sports}}</li>
+                    <li>Association: {{association}}</li>
+                    <li>Team: {{team}}</li>
+
+                    <br> </br>
+
+                    <div class=" row">
+                        <div class="col-7">
+                            <h6>About</h6>
+                        </div>
+
+                        <div class="col-5" style="text-align: right">
+                            <button class="button-edit" ng-click="switch.formThree()">Edit</button>
+                        </div>
+                    </div>
+
+                    <li>Description: {{about}}</li>
+                    <li>Interests {{interests}}</li>
+                    <br> </br>
+
+                    <!--SUBMIT -->
+                
+                    <button type="button" class="button" ng-click="switch.formFive()">
+                        <input id="submit-button" type="button" class="button-edit" value="Save Player Profile" ng-click="postdata(firstName, lastName, dobd,dobm,doby, nationality, gender, sports, team ,association, about, interests )" />
+                   </button>
+
+
+                </div>
+            </div>
+
+            <!--View Athletes-->
+            <div id="formFive" ng-show=switch.checkFormFive()>
+
+                <div class="progress" style="margin-bottom: 2em;">
+                    <div class="progress-yes">Athletes</div>
+                </div>
+
+                
+                    <h2 style="text-align: center; padding-bottom: 20px;">Athletes List</h2>
+                    <div class="profiles">
+                            <div ng-repeat="athlete in allPlayers track by $index" class="card">
+                                <div class="profileBody">
+                                    <h5 class="profile-title">Name: {{athlete.firstName}} {{athlete.lastName}}</h5>
+                                    <h6 class="profile-sport">Sport: {{athlete.sports}}</h6>
+                                    <h6 class="profile-team">Team: {{athlete.team}}</h6>
+                                    <p class="profile-text">Birth: {{athlete.dob}}</a>
+                                    <p class="profile-text">Nationality: {{athlete.nationality}}</a>
+                                    <p class="profile-text">Description: {{athlete.about}}</p>
+                                </div>
+                            </div>
+                    </div>
+                
+                <button type="button" class="button" ng-click="switch.formOne()">
+                    Add New Athlete
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-animate.min.js"></script>
+<script src="../../assets/script.js"></script>
+
+</body>
+</html>
