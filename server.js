@@ -17,7 +17,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(express.static(__dirname + '/public'));
 
 let uri = "mongodb://heroku_3hj7qs2b:mj1q8clap0f76hlfgjlvuvsbvu@ds253418.mlab.com:53418/heroku_3hj7qs2b";
-MongoClient.connect(uri, { useNewUrlParser: true }, function(err){
+mongoose.connect(uri, { useNewUrlParser: true }, function(err){
     if (err){
         console.log("Not Connected to the DB " + err)
     } else {
